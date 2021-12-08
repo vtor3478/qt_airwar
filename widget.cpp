@@ -84,10 +84,15 @@ void Widget::CheckHit()
 
 void Widget::updatePosition()
 {
+    enemy_live_cnt = 0;
     map.UpdatePosition();
     heroPlane.UpdatePosition();
     for (int i = 0;i < ENEMY1_NUM;i ++) {
         enemy[i].UpdatePosition();
+        if(enemy[i].pos != QPoint(0,0))
+        {
+            enemy_live_cnt ++ ;
+        }
     }
 
 }
@@ -131,13 +136,26 @@ void Widget::paintEvent(QPaintEvent *)
     //painter.drawPixmap(heroPlane.pos,heroPlane.pixmap);
     for (int i = 0;i < ENEMY1_NUM;i ++)
     {
-        if (enemy[i].pos != QPoint(0,0))
-        {
-            //QString str = QString("enemy[%1]").arg(i);
-            //painter.drawText(enemy[i].pos,str);
-            enemy[i].paint(&painter);
-        }
+        //QString str = QString("enemy[%1]").arg(i);
+        //painter.drawText(enemy[i].pos,str);
+        enemy[i].paint(&painter);
     }
+    paintInfo(&painter);
+}
+void Widget::paintInfo(QPainter *painter)
+{
+    QPoint pos = QPoint(100,600);
+    QString str;
+    str = QString("击杀敌军:%1").arg(heroPlane.kill_cnt);
+    painter->drawText(pos,str);
+    pos += QPoint(0,20);
+    str = QString("消耗子弹:%1").arg(heroPlane.fire_cnt);
+    painter->drawText(pos,str);
+    pos += QPoint(0,20);
+    str = QString("场上敌军:%1").arg(enemy_live_cnt);
+    painter->drawText(pos,str);
+    pos += QPoint(0,20);
+
 }
 
 Widget::~Widget()

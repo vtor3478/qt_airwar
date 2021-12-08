@@ -47,14 +47,14 @@ void Enemy::UpdatePosition()
 
 void Enemy::paint(QPainter *painter)
 {
-    // 绘制机身
-    painter->drawPixmap(pos,pixmap);
-    painter->drawRect(rect);
-    //painter->drawText(pos,"enemy1");
-    // 绘制子弹
-    for (int i = 0; i< BULLET2_NUM; i++)
+    // 绘制机身（绘画机身时，自行判断是否绘画）
+    if (pos != QPoint(0,0))
     {
-        if (bullet[i].pos != QPoint(0,0))
+        painter->drawPixmap(pos,pixmap);
+        painter->drawRect(rect);
+        //painter->drawText(pos,"enemy1");
+        // 绘制子弹
+        for (int i = 0; i< BULLET2_NUM; i++)
         {
             //painter->drawPixmap(bullet[i].pos,bullet_pixmap);
             bullet[i].paint(painter);

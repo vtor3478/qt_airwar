@@ -28,8 +28,12 @@ void Bullet::UpdatePosition()
 
 void Bullet::paint(QPainter *painter)
 {
-    //painter->drawText(pos,"b");
-    painter->drawRect(rect);
-    painter->drawPixmap(pos,pixmap);
+    // 是否绘画子弹，留给子弹本身进行判断
+    if (pos != QPoint(0,0))
+    {
+        //painter->drawText(pos,"b");
+        painter->drawRect(rect);
+        painter->drawPixmap(pos,pixmap);
+    }
 }
 

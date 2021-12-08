@@ -5,7 +5,7 @@ HeroPlane::HeroPlane()
     // 初始化飞机出场位置
     pixmap.load(HERO_PATH);
     pos = QPoint((GAME_WIDTH - pixmap.width())/ 2,GAME_HEIGHT - pixmap.height());
-
+    kill_cnt = 0;
     rect.setSize(pixmap.size());
     rect.moveTo(pos);
     for (int i=0; i< BULLET_NUM; i++)
@@ -40,19 +40,8 @@ void HeroPlane::paint(QPainter *painter)
     // 绘制子弹
     for (int i=0; i< BULLET_NUM; i++)
     {
-        if (bullet[i].pos != QPoint(0,0))
-        {
-            bullet[i].paint(painter);
-        }
+        bullet[i].paint(painter);
     }
-    // 绘制分数
-    QString str = "fire_cnt" + QString::number(fire_cnt) + "\n";
-    str += "kill_cnt" + QString::number(kill_cnt) + "\n";
-    str += "kill_cnt" + QString::number(kill_cnt) + "\n";
-    str += "kill_cnt" + QString::number(kill_cnt) + "\n";
-    //str.replace("\\n","\n");
-    painter->drawText(100,200,str);
-
 }
 
 void HeroPlane::Fire()
