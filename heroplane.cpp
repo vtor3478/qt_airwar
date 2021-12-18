@@ -48,7 +48,7 @@ void HeroPlane::Fire()
 {
     for (int i=0; i< BULLET_NUM; i++)
     {
-        if (bullet[i].pos == QPoint(0,0))
+        if (bullet[i].pos == QPoint(-1,-1))
         {
             fire_cnt += 1;
             bullet[i].pos = pos + QPoint(rect.width()/2 - bullet[i].rect.width() / 2,0);
@@ -61,7 +61,7 @@ void HeroPlane::Launch()
 {
     for (int i=0; i< MISSILE_NUM; i++)
     {
-        if (missile[i] == QPoint(0,0))
+        if (missile[i] == QPoint(-1,-1))
         {
             missile[i] = pos + QPoint(rect.width()/2,0);
             break;

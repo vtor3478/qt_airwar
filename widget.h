@@ -23,7 +23,9 @@ public:
     void updatePosition();
     void CheckHit();
 
+    void paintInfo(QPainter *painter);
     int Distance(QPoint p1,QPoint p2);
+    int enemy_live_cnt;
 
     Map map;
 

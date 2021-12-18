@@ -62,15 +62,15 @@ void Widget::CheckHit()
     // 检测子弹碰撞
     for (int i=0; i< BULLET_NUM; i++)
     {
-        if (heroPlane.bullet[i].pos != QPoint(0,0))
+        if (heroPlane.bullet[i].pos != QPoint(-1,-1))
         {
             for (int j = 0;j < ENEMY1_NUM;j ++)
             {
-                if (enemy[j].pos != QPoint(0,0))
+                if (enemy[j].pos != QPoint(-1,-1))
                 {
                     if (1 == heroPlane.bullet[i].rect.intersects(enemy[j].rect))
                     {
-                        heroPlane.bullet[i].pos = QPoint(0,0);
+                        heroPlane.bullet[i].pos = QPoint(-1,-1);
                         enemy[j].Create();
                         heroPlane.kill_cnt += 1;
                         //QSound::play(SOUND_BOMB);
@@ -89,7 +89,7 @@ void Widget::updatePosition()
     heroPlane.UpdatePosition();
     for (int i = 0;i < ENEMY1_NUM;i ++) {
         enemy[i].UpdatePosition();
-        if(enemy[i].pos != QPoint(0,0))
+        if(enemy[i].pos != QPoint(-1,-1))
         {
             enemy_live_cnt ++ ;
         }

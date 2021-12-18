@@ -27,7 +27,7 @@ void Enemy::Create()
 void Enemy::UpdatePosition()
 {
     // 更新敌机位置信息
-    if (pos != QPoint(0,0))
+    if (pos != QPoint(-1,-1))
     {
         pos += speed;
     }
@@ -48,7 +48,7 @@ void Enemy::UpdatePosition()
 void Enemy::paint(QPainter *painter)
 {
     // 绘制机身（绘画机身时，自行判断是否绘画）
-    if (pos != QPoint(0,0))
+    if (pos != QPoint(-1,-1))
     {
         painter->drawPixmap(pos,pixmap);
         painter->drawRect(rect);
@@ -68,7 +68,7 @@ void Enemy::Fire()
     {
         for (int i=0; i< BULLET2_NUM; i++)
         {
-            if (bullet[i].pos == QPoint(0,0))
+            if (bullet[i].pos == QPoint(-1,-1))
             {
                 bullet[i].setSpeed(QPoint(0,rand() % 5 + 2));
                 bullet[i].pos = pos + QPoint(rect.width() / 2 - bullet[i].rect.width() / 2,rect.height());
